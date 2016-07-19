@@ -1,4 +1,4 @@
-package com.amr.hibernata.entities;
+package com.amr.hibernate.entities;
 
 import javax.persistence.*;
 
@@ -22,7 +22,7 @@ public class User {
 	@SequenceGenerator(
 		name = "id_seq_generator",
 		sequenceName = "AMR_ID_SEQUENCE",
-		allocationSize = 10
+		allocationSize = 1
 
 	)
 	public long getId() {

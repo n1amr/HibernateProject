@@ -1,4 +1,4 @@
-package com.amr.hibernata.entities;
+package com.amr.hibernate.entities;
 
 import javax.persistence.*;
 
@@ -9,7 +9,7 @@ public class Place {
 	private String phoneNo;
 
 	@Id
-	@SequenceGenerator(name = "id_gen", sequenceName = "ID_SEQ_INCREMENT", allocationSize = 10)
+	@SequenceGenerator(name = "id_gen", sequenceName = "ID_SEQ_INCREMENT", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_gen")
 	@Column(name = "ID", length = 32, columnDefinition = "NUMBER(32)")
 	public long getId() {
@@ -37,4 +37,5 @@ public class Place {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
+
 }

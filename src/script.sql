@@ -41,10 +41,10 @@ CREATE TABLE amr_orders (
 
 CREATE TABLE amr_order_items (
   ID                NUMBER(32) PRIMARY KEY,
-  OrdreID           NUMBER(32) REFERENCES amr_orders,
+  OrderID           NUMBER(32) REFERENCES amr_orders,
   Place_Item_MenuID NUMBER(32) REFERENCES amr_place_items_menu,
   UserID            NUMBER(32) REFERENCES amr_user,
-  Count             NUMBER(3, 0) DEFAULT (1)
+  Count             NUMBER(10, 0) DEFAULT (1)
 );
 
 INSERT INTO amr_places (ID, Name, PhoneNo) VALUES ('1', 'place1', '123451');
