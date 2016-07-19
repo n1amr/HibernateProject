@@ -1,8 +1,10 @@
 package com.amr.hibernate.entities;
 
+import com.amr.hibernate.Main;
+
 import javax.persistence.*;
 
-@Entity(name = "amr_2_user")
+@Entity(name = Main.prefix + "user")
 @Table(
 	uniqueConstraints = @UniqueConstraint(columnNames = {"username"})
 )

@@ -1,8 +1,10 @@
 package com.amr.hibernate.entities;
 
+import com.amr.hibernate.Main;
+
 import javax.persistence.*;
 
-@Entity(name = "amr_2_place_items_menu")
+@Entity(name = Main.prefix + "place_items_menu")
 public class Item {
 	private long id;
 	private Place place;

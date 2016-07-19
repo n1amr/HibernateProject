@@ -1,8 +1,10 @@
 package com.amr.hibernate.entities;
 
+import com.amr.hibernate.Main;
+
 import javax.persistence.*;
 
-@Entity(name = "amr_2_order_items")
+@Entity(name = Main.prefix + "order_items")
 public class OrderItem {
 //	CREATE TABLE amr_order_items (
 //		ID                NUMBER(32) PRIMARY KEY,

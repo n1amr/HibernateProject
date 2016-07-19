@@ -1,11 +1,13 @@
 package com.amr.hibernate.entities;
 
+import com.amr.hibernate.Main;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-@Entity(name = "amr_2_orders")
+@Entity(name = Main.prefix + "orders")
 public class Order {
 	//	ID           NUMBER(32) PRIMARY KEY,
 //	Owner_userID NUMBER(32) REFERENCES amr_user,

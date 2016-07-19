@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
+	public static final String prefix = "amr_";
+
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
@@ -22,7 +24,7 @@ public class Main {
 		user.setName("Amr Alaa");
 		user.setPassword("password");
 		user.setPhoneNo("123456");
-		user.setUsername("n1amr");
+		user.setUsername("n1amr" + Math.random());
 		session.save(user);
 
 		Place place = new Place();
@@ -57,7 +59,7 @@ public class Main {
 
 		session = sessionFactory.openSession();
 
-		Query query = session.createQuery("from amr_2_orders");
+		Query query = session.createQuery("from " + prefix + "orders");
 		List orders = query.list();
 		for (Object obj : orders) {
 			Order order1 = (Order) obj;
