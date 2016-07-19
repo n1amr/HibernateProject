@@ -4,7 +4,7 @@ import com.amr.hibernate.Main;
 
 import javax.persistence.*;
 
-@Entity(name = Main.prefix + "user")
+@Entity(name = Main.table_prefix + "user")
 @Table(
 	uniqueConstraints = @UniqueConstraint(columnNames = {"username"})
 )

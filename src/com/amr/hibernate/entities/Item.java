@@ -4,7 +4,7 @@ import com.amr.hibernate.Main;
 
 import javax.persistence.*;
 
-@Entity(name = Main.prefix + "place_items_menu")
+@Entity(name = Main.table_prefix + "place_items_menu")
 public class Item {
 	private long id;
 	private Place place;

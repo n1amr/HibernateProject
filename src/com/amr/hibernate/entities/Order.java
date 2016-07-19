@@ -6,9 +6,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Queue;
 
-@Entity(name = Main.prefix + "orders")
+@Entity(name = Main.table_prefix + "orders")
 public class Order {
 	private long id;
 	private User owner;
@@ -79,7 +78,7 @@ public class Order {
 	public float getTotalPrice() {
 		float total = 0;
 		for (OrderItem orderItem : getOrderItems())
-			total += orderItem.getItem().getPrice();
+			total += orderItem.getItem().getPrice() * orderItem.getCount();
 
 		return total;
 	}

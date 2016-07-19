@@ -10,63 +10,101 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-	public static final String prefix = "amr_";
+	public static final String table_prefix = "amr_";
 
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 
+		User[] users = new User[100];
+		Place[] places = new Place[100];
+		Item[][] items = new Item[places.length][100];
+		Order[] orders = new Order[1000];
+		int MAX_ITEMS_PER_ORDER = 10;
+		int MAX_COUNT_PER_ITEM = 10;
+
+		for (int i = 0; i < users.length; i++) {
+			User user = new User();
+			user.setName("user " + i);
+			user.setPassword("pass" + i);
+			user.setPhoneNo("123456" + i);
+			user.setUsername("n1amr" + i + "." + System.currentTimeMillis());
+			users[i] = user;
+		}
+
+		for (int i = 0; i < places.length; i++) {
+			Place place = new Place();
+			place.setName("place" + i);
+			place.setPhoneNo("9876500" + i);
+			places[i] = place;
+
+			for (int j = 0; j < items[0].length; j++) {
+				Item item = new Item();
+				item.setName("item" + i + ":" + j);
+				item.setDescription("description " + j + " in place " + i);
+				item.setPrice((float) Math.random() * 10);
+				item.setPlace(place);
+				items[i][j] = item;
+			}
+		}
+
+		for (int i = 0; i < orders.length; i++) {
+			Order order = new Order();
+			int ownerUserIndex = (int) (Math.random() * users.length);
+			order.setOwner(users[ownerUserIndex]);
+			int placeIndex = (int) (Math.random() * places.length);
+			order.setPlace(places[placeIndex]);
+			order.setDate(new Date());
+			order.setStatus("NEW");
+			orders[i] = order;
+
+			int item_count = (int) (Math.random() * MAX_ITEMS_PER_ORDER);
+			for (int j = 0; j < item_count; j++) {
+				OrderItem orderItem = new OrderItem();
+				orderItem.setCount((int) (Math.random() * MAX_COUNT_PER_ITEM));
+				int itemIndex = (int) (Math.random() * items[0].length);
+				orderItem.setItem(items[placeIndex][itemIndex]);
+				int userIndex = (int) (Math.random() * users.length);
+				orderItem.setUser(users[userIndex]);
+				orderItem.setOrder(orders[i]);
+				order.getOrderItems().add(orderItem);
+			}
+		}
+
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		User user = new User();
-		user.setId(1);
-		user.setName("Amr Alaa");
-		user.setPassword("password");
-		user.setPhoneNo("123456");
-		user.setUsername("n1amr" + Math.random());
-		session.save(user);
+		for (int i = 0; i < users.length; i++) {
+			session.save(users[i]);
+		}
 
-		Place place = new Place();
-		place.setName("place1");
-		place.setPhoneNo("9876541");
-		session.save(place);
+		for (int i = 0; i < places.length; i++) {
+			session.save(places[i]);
+			for (int j = 0; j < items[i].length; j++) {
+				session.save(items[i][j]);
+			}
+		}
 
-		Item item = new Item();
-		item.setName("item1");
-		item.setDescription("description 1");
-		item.setPrice((float) 1.23);
-		item.setPlace(place);
-		session.save(item);
-
-		Order order = new Order();
-		order.setOwner(user);
-		order.setPlace(place);
-		order.setDate(new Date());
-		order.setStatus("NEW");
-		session.save(order);
-
-		OrderItem orderItem = new OrderItem();
-		orderItem.setCount(2);
-		orderItem.setItem(item);
-		orderItem.setUser(user);
-		orderItem.setOrder(order);
-		session.save(orderItem);
-
+		for (int i = 0; i < orders.length; i++) {
+			session.save(orders[i]);
+		}
 
 		session.getTransaction().commit();
 		session.close();
 
 		session = sessionFactory.openSession();
 
-		Query query = session.createQuery("from " + prefix + "orders");
-		List orders = query.list();
-		for (Object obj : orders) {
+		Query query = session.createQuery("from " + table_prefix + "orders");
+		List orders2 = query.list();
+		for (Object obj : orders2) {
 			Order order1 = (Order) obj;
+			System.out.println();
 			System.out.println(order1.getDate());
-			OrderItem orderItem1 = (OrderItem) order1.getOrderItems().toArray()[0];
-			System.out.println(orderItem1.getCount());
-			System.out.println(order1.getTotalPrice());
+			System.out.println("Order:");
+			for (OrderItem orderItem1 : order1.getOrderItems()) {
+				System.out.println("  " + orderItem1.getItem().getName() + " (x" + orderItem1.getCount() + ")" + " = $" + orderItem1.getItem().getPrice());
+			}
+			System.out.println("  Total = $" + order1.getTotalPrice());
 		}
 
 		session.close();

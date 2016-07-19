@@ -1,16 +1,23 @@
 USE TEST;
 
+-- DELETE FROM AMR_USER;
+-- DELETE FROM AMR_ORDER_ITEMS;
+-- DELETE FROM AMR_PLACE_ITEMS_MENU;
+-- DELETE FROM AMR_ORDERS;
+-- DELETE FROM AMR_PLACES;
+
+
 -- BEGIN
 --   FOR c IN ( SELECT table_name
 --              FROM user_tables
---              WHERE table_name LIKE 'AMR_%' )
+--              WHERE table_name LIKE 'amr_%' )
 --   LOOP
 --     EXECUTE IMMEDIATE 'DROP TABLE ' || c.table_name;
 --   END LOOP;
 -- END;
 
 CREATE TABLE amr_user (
-  ID       NUMBER(32) PRIMARY KEY,
+  ID       NUMBER(32) PRIMARY KEY NOT NULL ,
   Username VARCHAR2(255) UNIQUE,
   Pass     VARCHAR2(255),
   Name     VARCHAR2(255),
@@ -18,7 +25,7 @@ CREATE TABLE amr_user (
 );
 
 CREATE TABLE amr_places (
-  ID      NUMBER(32) PRIMARY KEY,
+  ID      NUMBER(32) PRIMARY KEY NOT NULL ,
   Name    VARCHAR2(255),
   PhoneNo VARCHAR2(50)
 );
@@ -32,7 +39,7 @@ CREATE TABLE amr_place_items_menu (
 );
 
 CREATE TABLE amr_orders (
-  ID           NUMBER(32) PRIMARY KEY,
+  ID           NUMBER(32) PRIMARY KEY NOT NULL ,
   Owner_userID NUMBER(32) REFERENCES amr_user,
   Status       VARCHAR2(50),
   PlaceID      NUMBER(32) REFERENCES amr_places,
@@ -40,7 +47,7 @@ CREATE TABLE amr_orders (
 );
 
 CREATE TABLE amr_order_items (
-  ID                NUMBER(32) PRIMARY KEY,
+  ID                NUMBER(32) PRIMARY KEY NOT NULL ,
   OrderID           NUMBER(32) REFERENCES amr_orders,
   Place_Item_MenuID NUMBER(32) REFERENCES amr_place_items_menu,
   UserID            NUMBER(32) REFERENCES amr_user,
