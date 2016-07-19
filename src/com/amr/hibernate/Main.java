@@ -66,6 +66,7 @@ public class Main {
 			System.out.println(order1.getDate());
 			OrderItem orderItem1 = (OrderItem) order1.getOrderItems().toArray()[0];
 			System.out.println(orderItem1.getCount());
+			System.out.println(order1.getTotalPrice());
 		}
 
 		session.close();

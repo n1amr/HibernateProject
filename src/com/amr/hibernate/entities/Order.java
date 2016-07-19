@@ -6,14 +6,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Queue;
 
 @Entity(name = Main.prefix + "orders")
 public class Order {
-	//	ID           NUMBER(32) PRIMARY KEY,
-//	Owner_userID NUMBER(32) REFERENCES amr_user,
-//	Status       VARCHAR2(50),
-//	PlaceID      NUMBER(32) REFERENCES amr_places,
-//	"Date"       DATE
 	private long id;
 	private User owner;
 	private String status;
@@ -77,5 +73,14 @@ public class Order {
 
 	public void setOrderItems(Collection<OrderItem> orderItems) {
 		this.orderItems = orderItems;
+	}
+
+	@Transient
+	public float getTotalPrice() {
+		float total = 0;
+		for (OrderItem orderItem : getOrderItems())
+			total += orderItem.getItem().getPrice();
+
+		return total;
 	}
 }
