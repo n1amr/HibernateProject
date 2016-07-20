@@ -1,20 +1,10 @@
-USE TEST;
+-- USE TEST;
 
--- DELETE FROM AMR_USER;
--- DELETE FROM AMR_ORDER_ITEMS;
--- DELETE FROM AMR_PLACE_ITEMS_MENU;
--- DELETE FROM AMR_ORDERS;
--- DELETE FROM AMR_PLACES;
-
-
--- BEGIN
---   FOR c IN ( SELECT table_name
---              FROM user_tables
---              WHERE table_name LIKE 'amr_%' )
---   LOOP
---     EXECUTE IMMEDIATE 'DROP TABLE ' || c.table_name;
---   END LOOP;
--- END;
+DELETE FROM amr_order_items;
+DELETE FROM amr_place_items_menu;
+DELETE FROM amr_orders;
+DELETE FROM amr_places;
+DELETE FROM amr_user;
 
 CREATE TABLE amr_user (
   ID       NUMBER(32) PRIMARY KEY NOT NULL ,
@@ -53,8 +43,3 @@ CREATE TABLE amr_order_items (
   UserID            NUMBER(32) REFERENCES amr_user,
   Count             NUMBER(10, 0) DEFAULT (1)
 );
-
-INSERT INTO amr_places (ID, Name, PhoneNo) VALUES ('1', 'place1', '123451');
-INSERT INTO amr_place_items_menu (ID, PlaceID, Name, "Desc", Price) VALUES ('1', '1', 'item1', 'desc1', 999.99);
-SELECT *
-FROM amr_place_items_menu;

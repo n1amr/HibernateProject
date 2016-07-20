@@ -3,12 +3,15 @@ package com.amr.hibernate.entities;
 import com.amr.hibernate.Main;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity(name = Main.table_prefix + "places")
 public class Place {
 	private long id;
 	private String name;
 	private String phoneNo;
+	private Collection<Item> items = new ArrayList<>();
 
 	@Id
 	@SequenceGenerator(name = "id_gen", sequenceName = "ID_SEQ_INCREMENT", allocationSize = 1)
@@ -40,4 +43,13 @@ public class Place {
 		this.phoneNo = phoneNo;
 	}
 
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "place")
+	public Collection<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(Collection<Item> items) {
+		this.items = items;
+	}
 }

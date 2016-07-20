@@ -16,10 +16,10 @@ public class Main {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 
-		User[] users = new User[100];
-		Place[] places = new Place[100];
-		Item[][] items = new Item[places.length][100];
-		Order[] orders = new Order[1000];
+		User[] users = new User[10];
+		Place[] places = new Place[10];
+		Item[][] items = new Item[places.length][10];
+		Order[] orders = new Order[10];
 		int MAX_ITEMS_PER_ORDER = 10;
 		int MAX_COUNT_PER_ITEM = 10;
 
@@ -74,9 +74,8 @@ public class Main {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		for (int i = 0; i < users.length; i++) {
-			session.save(users[i]);
-		}
+		for (User user : users)
+			session.save(user);
 
 		for (int i = 0; i < places.length; i++) {
 			session.save(places[i]);
@@ -85,9 +84,8 @@ public class Main {
 			}
 		}
 
-		for (int i = 0; i < orders.length; i++) {
-			session.save(orders[i]);
-		}
+		for (Order order : orders)
+			session.save(order);
 
 		session.getTransaction().commit();
 		session.close();
@@ -106,6 +104,18 @@ public class Main {
 			}
 			System.out.println("  Total = $" + order1.getTotalPrice());
 		}
+
+		query = session.createQuery("from " + table_prefix + "places");
+		List places1 = query.list();
+		for (Object obj : places1) {
+			Place place = (Place) obj;
+			System.out.println();
+			System.out.println("Place " + place.getName() + ":");
+			for (Item item : place.getItems()) {
+				System.out.println("  " + item.getName());
+			}
+		}
+
 
 		session.close();
 	}

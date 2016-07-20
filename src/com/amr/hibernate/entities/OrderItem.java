@@ -6,14 +6,6 @@ import javax.persistence.*;
 
 @Entity(name = Main.table_prefix + "order_items")
 public class OrderItem {
-//	CREATE TABLE amr_order_items (
-//		ID                NUMBER(32) PRIMARY KEY,
-//	OrderID           NUMBER(32) REFERENCES amr_orders,
-//	Place_Item_MenuID NUMBER(32) REFERENCES amr_place_items_menu,
-//	UserID            NUMBER(32) REFERENCES amr_user,
-//	Count             NUMBER(3, 0) DEFAULT (1)
-//		);
-
 	private long id;
 	private Order order;
 	private Item item;
