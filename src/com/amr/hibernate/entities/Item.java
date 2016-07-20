@@ -1,10 +1,12 @@
 package com.amr.hibernate.entities;
 
 import com.amr.hibernate.Main;
+import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
 @Entity(name = Main.table_prefix + "place_items_menu")
+@Check(constraints = "price >= 0")
 public class Item {
 	private long id;
 	private Place place;
