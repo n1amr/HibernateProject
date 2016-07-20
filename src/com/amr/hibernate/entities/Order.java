@@ -37,7 +37,7 @@ public class Order {
 		this.owner = owner;
 	}
 
-	@Column(name = "Status")
+	@Column(name = "Status", length = 50)
 	public String getStatus() {
 		return status;
 	}

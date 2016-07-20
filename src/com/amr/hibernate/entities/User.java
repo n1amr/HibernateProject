@@ -3,6 +3,7 @@ package com.amr.hibernate.entities;
 import com.amr.hibernate.Main;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity(name = Main.table_prefix + "user")
 @Table(
@@ -14,6 +15,7 @@ public class User {
 	private String password;
 	private String name;
 	private String phoneNo;
+	private Collection<Order> orders;
 
 	@Id
 	@Column(name = "ID")
@@ -69,5 +71,14 @@ public class User {
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	public Collection<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<Order> orders) {
+		this.orders = orders;
 	}
 }

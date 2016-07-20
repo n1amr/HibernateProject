@@ -42,6 +42,7 @@ public class Item {
 		this.name = name;
 	}
 
+	@Lob
 	@Column(name = "\"Desc\"")
 	public String getDescription() {
 		return description;
