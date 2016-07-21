@@ -1,0 +1,1 @@
+CREATE INDEX amr_items_price_index ON AMR_PLACE_ITEMS_MENU (PRICE);
