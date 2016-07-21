@@ -16,12 +16,12 @@ public class Main {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 
-		User[] users = new User[0];
-		Place[] places = new Place[0];
-		Item[][] items = new Item[places.length][0];
-		Order[] orders = new Order[0];
-		int MAX_ITEMS_PER_ORDER =0;
-		int MAX_COUNT_PER_ITEM = 0;
+		User[] users = new User[10];
+		Place[] places = new Place[10];
+		Item[][] items = new Item[places.length][10];
+		Order[] orders = new Order[10];
+		int MAX_ITEMS_PER_ORDER =5;
+		int MAX_COUNT_PER_ITEM = 5;
 
 		for (int i = 0; i < users.length; i++) {
 			User user = new User();
