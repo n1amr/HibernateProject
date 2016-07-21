@@ -61,4 +61,15 @@ public class OrderItem {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	@Override
+	public String toString() {
+		return "Order Item:" +
+			"\n\tID: " + id +
+			"\n\tOrder ID: " + order.getId() +
+			"\n\tItem Name: " + item.getName() +
+			"\n\tUser Name: " + user.getName() +
+			"\n\tCount: " + count;
+	}
+
 }

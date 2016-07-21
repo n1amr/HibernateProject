@@ -1,7 +1,6 @@
 package com.amr.hibernate;
 
 import com.amr.hibernate.entities.*;
-import com.amr.hibernate.views.OrderView;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,12 +16,12 @@ public class Main {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 
-		User[] users = new User[10];
-		Place[] places = new Place[10];
-		Item[][] items = new Item[places.length][10];
-		Order[] orders = new Order[10];
-		int MAX_ITEMS_PER_ORDER = 10;
-		int MAX_COUNT_PER_ITEM = 10;
+		User[] users = new User[0];
+		Place[] places = new Place[0];
+		Item[][] items = new Item[places.length][0];
+		Order[] orders = new Order[0];
+		int MAX_ITEMS_PER_ORDER =0;
+		int MAX_COUNT_PER_ITEM = 0;
 
 		for (int i = 0; i < users.length; i++) {
 			User user = new User();
@@ -80,9 +79,8 @@ public class Main {
 
 		for (int i = 0; i < places.length; i++) {
 			session.save(places[i]);
-			for (int j = 0; j < items[i].length; j++) {
+			for (int j = 0; j < items[i].length; j++)
 				session.save(items[i][j]);
-			}
 		}
 
 		for (Order order : orders)
@@ -98,37 +96,22 @@ public class Main {
 		for (Object obj : orders2) {
 			Order order1 = (Order) obj;
 			System.out.println();
-			System.out.println(order1.getDate());
-			System.out.println("Order:");
-			for (OrderItem orderItem1 : order1.getOrderItems()) {
-				System.out.println("  " + orderItem1.getItem().getName() + " (x" + orderItem1.getCount() + ")" + " = $" + orderItem1.getItem().getPrice());
-			}
-			System.out.println("  Total = $" + order1.getTotalPrice());
+			System.out.println(order1);
+			order1.getOrderItems().forEach(System.out::println);
+			System.out.println("Total = $" + order1.getTotalPrice());
 		}
 
 		query = session.createQuery("from " + table_prefix + "PLACES");
-		List places1 = query.list();
-		for (Object obj : places1) {
-			Place place = (Place) obj;
-			System.out.println();
-			System.out.println("Place " + place.getName() + ":");
-			for (Item item : place.getItems()) {
-				System.out.println("  " + item.getName());
-			}
-		}
+		//noinspection unchecked
+		query.list().forEach(System.out::println);
 
-		session.close();
-
-		session = sessionFactory.openSession();
-
-		OrderView orderView = new OrderView();
 		query = session.createQuery("from " + Main.table_prefix + "ORDER_VIEW");
-		List orderViews = query.list();
-		for (Object obj : orderViews) {
-			OrderView overview1 = (OrderView) obj;
-			System.out.println(overview1);
-		}
+		//noinspection unchecked
+		query.list().forEach(System.out::println);
 
+		query = session.createQuery("from " + Main.table_prefix + "ORDER_ITEM_VIEW");
+		//noinspection unchecked
+		query.list().forEach(System.out::println);
 		session.close();
 	}
 }

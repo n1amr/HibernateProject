@@ -1,10 +1,10 @@
 -- Order view
 CREATE OR REPLACE VIEW AMR_ORDER_VIEW AS
   SELECT
-    AMR_ORDERS.ID        AS "ORDER_ID",
-    AMR_USER.NAME        AS "OWNER_NAME",
-    AMR_ORDERS.STATUS    AS "STATUS",
-    AMR_PLACES.NAME      AS "PLACE_NAME",
+    AMR_ORDERS.ID         AS "ORDER_ID",
+    AMR_USER.NAME         AS "OWNER_NAME",
+    AMR_ORDERS.STATUS     AS "STATUS",
+    AMR_PLACES.NAME       AS "PLACE_NAME",
     AMR_ORDERS.ORDER_DATE AS "ORDER_DATE"
   FROM AMR_ORDERS
     JOIN AMR_PLACES ON AMR_ORDERS.PLACE_ID = AMR_PLACES.ID
@@ -14,12 +14,12 @@ CREATE OR REPLACE VIEW AMR_ORDER_VIEW AS
 -- Order item view
 CREATE OR REPLACE VIEW AMR_ORDER_ITEM_VIEW AS
   SELECT
-    AMR_ORDERS.ID                                                   AS "Order_ID",
-    AMR_PLACES.NAME                                                 AS "Place_Name",
-    AMR_USER.NAME                                                   AS "User_Name",
-    AMR_ORDER_ITEMS.COUNT                                           AS "Count",
-    ('L.E. ' || AMR_PLACE_ITEMS_MENU.PRICE)                         AS "Price",
-    ('L.E. ' || AMR_ORDER_ITEMS.COUNT * AMR_PLACE_ITEMS_MENU.PRICE) AS "Total"
+    AMR_ORDERS.ID                                                   AS "ORDER_ID",
+    AMR_PLACES.NAME                                                 AS "PLACE_NAME",
+    AMR_USER.NAME                                                   AS "USER_NAME",
+    AMR_ORDER_ITEMS.COUNT                                           AS "COUNT",
+    AMR_PLACE_ITEMS_MENU.PRICE                         AS "PRICE",
+    AMR_ORDER_ITEMS.COUNT * AMR_PLACE_ITEMS_MENU.PRICE AS "TOTAL"
   FROM AMR_ORDER_ITEMS
     JOIN AMR_USER ON AMR_ORDER_ITEMS.USER_ID = AMR_USER.ID
     JOIN AMR_PLACE_ITEMS_MENU ON AMR_ORDER_ITEMS.PLACE_ITEM_MENU_ID = AMR_PLACE_ITEMS_MENU.ID

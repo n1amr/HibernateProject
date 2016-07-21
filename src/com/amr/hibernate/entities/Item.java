@@ -62,4 +62,14 @@ public class Item {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "Item: " +
+			"\n\tID: " + id +
+			"\n\tPlace Name: " + place.getName() +
+			"\n\tName: " + name +
+			"\n\tDescription: " + description +
+			"\n\tPrice: " + price;
+	}
 }

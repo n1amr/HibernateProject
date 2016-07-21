@@ -82,4 +82,15 @@ public class Order {
 
 		return total;
 	}
+
+	@Override
+	public String toString() {
+		return "Order:" +
+			"\n\tID: " + id +
+			"\n\tOwner Name: " + owner.getName() +
+			"\n\tStatus: " + status +
+			"\n\tPlace Name: " + place.getName() +
+			"\n\tDate: " + date;
+	}
+
 }

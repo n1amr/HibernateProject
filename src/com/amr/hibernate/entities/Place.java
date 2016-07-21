@@ -52,4 +52,12 @@ public class Place {
 	public void setItems(Collection<Item> items) {
 		this.items = items;
 	}
+
+	@Override
+	public String toString() {
+		return "Place:" +
+			"\n\tID: " + id +
+			"\n\tName: " + name +
+			"\n\tPhone No.: " + phoneNo;
+	}
 }
