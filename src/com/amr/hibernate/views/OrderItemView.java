@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity(name = Main.table_prefix + "ORDER_ITEM_VIEW")
 public class OrderItemView {
+	private long id;
 	private long orderId;
 	private String placeName;
 	private String userName;
@@ -16,6 +17,15 @@ public class OrderItemView {
 	private float total;
 
 	@Id
+	@Column(name = "ID")
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@Column(name = "ORDER_ID")
 	public long getOrderId() {
 		return orderId;

@@ -14,10 +14,11 @@ CREATE OR REPLACE VIEW AMR_ORDER_VIEW AS
 -- Order item view
 CREATE OR REPLACE VIEW AMR_ORDER_ITEM_VIEW AS
   SELECT
-    AMR_ORDERS.ID                                                   AS "ORDER_ID",
-    AMR_PLACES.NAME                                                 AS "PLACE_NAME",
-    AMR_USER.NAME                                                   AS "USER_NAME",
-    AMR_ORDER_ITEMS.COUNT                                           AS "COUNT",
+    AMR_ORDER_ITEMS.ID                                 AS "ID",
+    AMR_ORDERS.ID                                      AS "ORDER_ID",
+    AMR_PLACES.NAME                                    AS "PLACE_NAME",
+    AMR_USER.NAME                                      AS "USER_NAME",
+    AMR_ORDER_ITEMS.COUNT                              AS "COUNT",
     AMR_PLACE_ITEMS_MENU.PRICE                         AS "PRICE",
     AMR_ORDER_ITEMS.COUNT * AMR_PLACE_ITEMS_MENU.PRICE AS "TOTAL"
   FROM AMR_ORDER_ITEMS

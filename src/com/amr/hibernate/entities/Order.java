@@ -14,6 +14,7 @@ public class Order {
 	private String status;
 	private Place place;
 	private Date date;
+	private float totalPrice;
 	private Collection<OrderItem> orderItems = new ArrayList<>();
 
 	@Id
@@ -76,11 +77,11 @@ public class Order {
 
 	@Transient
 	public float getTotalPrice() {
-		float total = 0;
+		totalPrice = 0;
 		for (OrderItem orderItem : getOrderItems())
-			total += orderItem.getItem().getPrice() * orderItem.getCount();
+			totalPrice += orderItem.getItem().getPrice() * orderItem.getCount();
 
-		return total;
+		return totalPrice;
 	}
 
 	@Override
