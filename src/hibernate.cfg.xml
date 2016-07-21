@@ -70,6 +70,7 @@
 		<mapping class="com.amr.hibernate.entities.Item"/>
 		<mapping class="com.amr.hibernate.entities.Order"/>
 		<mapping class="com.amr.hibernate.entities.OrderItem"/>
+		<mapping class="com.amr.hibernate.views.OrderView"/>
 
 	</session-factory>
 

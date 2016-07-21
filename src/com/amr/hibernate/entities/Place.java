@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Entity(name = Main.table_prefix + "places")
+@Entity(name = Main.table_prefix + "PLACES")
 public class Place {
 	private long id;
 	private String name;
@@ -25,7 +25,7 @@ public class Place {
 		this.id = id;
 	}
 
-	@Column(name = "Name")
+	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
@@ -34,7 +34,7 @@ public class Place {
 		this.name = name;
 	}
 
-	@Column(name = "PhoneNo", length = 50)
+	@Column(name = "PHONE_NO", length = 50)
 	public String getPhoneNo() {
 		return phoneNo;
 	}

@@ -5,7 +5,7 @@ import com.amr.hibernate.Main;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity(name = Main.table_prefix + "user")
+@Entity(name = Main.table_prefix + "USER")
 @Table(
 	uniqueConstraints = @UniqueConstraint(columnNames = {"username"})
 )
@@ -37,7 +37,7 @@ public class User {
 		this.id = id;
 	}
 
-	@Column(name = "Username")
+	@Column(name = "USERNAME")
 	public String getUsername() {
 		return username;
 	}
@@ -46,7 +46,7 @@ public class User {
 		this.username = username;
 	}
 
-	@Column(name = "Pass")
+	@Column(name = "PASS")
 	public String getPassword() {
 		return password;
 	}
@@ -55,7 +55,7 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name = "Name")
+	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
@@ -64,7 +64,7 @@ public class User {
 		this.name = name;
 	}
 
-	@Column(name = "PhoneNo")
+	@Column(name = "PHONE_NO")
 	public String getPhoneNo() {
 		return phoneNo;
 	}

@@ -4,7 +4,7 @@ import com.amr.hibernate.Main;
 
 import javax.persistence.*;
 
-@Entity(name = Main.table_prefix + "order_items")
+@Entity(name = Main.table_prefix + "ORDER_ITEMS")
 public class OrderItem {
 	private long id;
 	private Order order;
@@ -24,7 +24,7 @@ public class OrderItem {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "OrderID")
+	@JoinColumn(name = "ORDER_ID")
 	public Order getOrder() {
 		return order;
 	}
@@ -34,7 +34,7 @@ public class OrderItem {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Place_Item_MenuID")
+	@JoinColumn(name = "PLACE_ITEM_MENU_ID")
 	public Item getItem() {
 		return item;
 	}
@@ -44,7 +44,7 @@ public class OrderItem {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "UserID")
+	@JoinColumn(name = "USER_ID")
 	public User getUser() {
 		return user;
 	}
@@ -53,7 +53,7 @@ public class OrderItem {
 		this.user = user;
 	}
 
-	@Column(name = "Count")
+	@Column(name = "COUNT")
 	public int getCount() {
 		return count;
 	}

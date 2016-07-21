@@ -5,7 +5,7 @@ import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
-@Entity(name = Main.table_prefix + "place_items_menu")
+@Entity(name = Main.table_prefix + "PLACE_ITEMS_MENU")
 @Check(constraints = "price >= 0")
 public class Item {
 	private long id;
@@ -26,7 +26,7 @@ public class Item {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PlaceID")
+	@JoinColumn(name = "PLACE_ID")
 	public Place getPlace() {
 		return place;
 	}
@@ -35,7 +35,7 @@ public class Item {
 		this.place = place;
 	}
 
-	@Column(name = "Name")
+	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
@@ -45,7 +45,7 @@ public class Item {
 	}
 
 	@Lob
-	@Column(name = "\"Desc\"")
+	@Column(name = "DESCRIPTION")
 	public String getDescription() {
 		return description;
 	}
@@ -54,7 +54,7 @@ public class Item {
 		this.description = description;
 	}
 
-	@Column(name = "Price")
+	@Column(name = "PRICE")
 	public float getPrice() {
 		return price;
 	}

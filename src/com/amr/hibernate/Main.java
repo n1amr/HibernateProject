@@ -1,6 +1,7 @@
 package com.amr.hibernate;
 
 import com.amr.hibernate.entities.*;
+import com.amr.hibernate.views.OrderView;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-	public static final String table_prefix = "amr_";
+	public static final String table_prefix = "AMR_";
 
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -92,7 +93,7 @@ public class Main {
 
 		session = sessionFactory.openSession();
 
-		Query query = session.createQuery("from " + table_prefix + "orders");
+		Query query = session.createQuery("from " + table_prefix + "ORDERS");
 		List orders2 = query.list();
 		for (Object obj : orders2) {
 			Order order1 = (Order) obj;
@@ -105,7 +106,7 @@ public class Main {
 			System.out.println("  Total = $" + order1.getTotalPrice());
 		}
 
-		query = session.createQuery("from " + table_prefix + "places");
+		query = session.createQuery("from " + table_prefix + "PLACES");
 		List places1 = query.list();
 		for (Object obj : places1) {
 			Place place = (Place) obj;
@@ -116,6 +117,17 @@ public class Main {
 			}
 		}
 
+		session.close();
+
+		session = sessionFactory.openSession();
+
+		OrderView orderView = new OrderView();
+		query = session.createQuery("from " + Main.table_prefix + "ORDER_VIEW");
+		List orderViews = query.list();
+		for (Object obj : orderViews) {
+			OrderView overview1 = (OrderView) obj;
+			System.out.println(overview1);
+		}
 
 		session.close();
 	}

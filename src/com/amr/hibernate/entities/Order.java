@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-@Entity(name = Main.table_prefix + "orders")
+@Entity(name = Main.table_prefix + "ORDERS")
 public class Order {
 	private long id;
 	private User owner;
@@ -28,7 +28,7 @@ public class Order {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Owner_userID")
+	@JoinColumn(name = "OWNER_USER_ID")
 	public User getOwner() {
 		return owner;
 	}
@@ -37,7 +37,7 @@ public class Order {
 		this.owner = owner;
 	}
 
-	@Column(name = "Status", length = 50)
+	@Column(name = "STATUS", length = 50)
 	public String getStatus() {
 		return status;
 	}
@@ -47,7 +47,7 @@ public class Order {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PlaceID")
+	@JoinColumn(name = "PLACE_ID")
 	public Place getPlace() {
 		return place;
 	}
@@ -56,7 +56,7 @@ public class Order {
 		this.place = place;
 	}
 
-	@Column(name = "\"Date\"")
+	@Column(name = "ORDER_DATE")
 	public Date getDate() {
 		return date;
 	}

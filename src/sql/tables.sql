@@ -6,47 +6,47 @@
 -- DELETE FROM amr_places;
 -- DELETE FROM amr_user;
 
-DROP TABLE amr_order_items;
-DROP TABLE amr_place_items_menu;
-DROP TABLE amr_orders;
-DROP TABLE amr_places;
-DROP TABLE amr_user;
+DROP TABLE AMR_ORDER_ITEMS;
+DROP TABLE AMR_PLACE_ITEMS_MENU;
+DROP TABLE AMR_ORDERS;
+DROP TABLE AMR_PLACES;
+DROP TABLE AMR_USER;
 
-CREATE TABLE amr_user (
+CREATE TABLE AMR_USER (
   ID       NUMBER(32) PRIMARY KEY NOT NULL,
-  Username VARCHAR2(255) UNIQUE,
-  Pass     VARCHAR2(255),
-  Name     VARCHAR2(255),
-  PhoneNo  VARCHAR2(50)
+  USERNAME VARCHAR2(255) UNIQUE,
+  PASS     VARCHAR2(255),
+  NAME     VARCHAR2(255),
+  PHONE_NO VARCHAR2(50)
 );
 
-CREATE TABLE amr_places (
-  ID      NUMBER(32) PRIMARY KEY NOT NULL,
-  Name    VARCHAR2(255),
-  PhoneNo VARCHAR2(50)
+CREATE TABLE AMR_PLACES (
+  ID       NUMBER(32) PRIMARY KEY NOT NULL,
+  NAME     VARCHAR2(255),
+  PHONE_NO VARCHAR2(50)
 );
 
-CREATE TABLE amr_place_items_menu (
-  ID      NUMBER(32) PRIMARY KEY,
-  PlaceID NUMBER(32) REFERENCES amr_places NOT NULL,
-  Name    VARCHAR2(255),
-  "Desc"  CLOB,
-  Price   NUMBER(5, 2),
+CREATE TABLE AMR_PLACE_ITEMS_MENU (
+  ID          NUMBER(32) PRIMARY KEY,
+  PLACE_ID    NUMBER(32) REFERENCES amr_places NOT NULL,
+  NAME        VARCHAR2(255),
+  DESCRIPTION CLOB,
+  PRICE       NUMBER(5, 2),
   CONSTRAINT "NON_NEGATIVE_PRICE" CHECK (Price >= 0) ENABLE
 );
 
-CREATE TABLE amr_orders (
-  ID           NUMBER(32) PRIMARY KEY           NOT NULL,
-  Owner_userID NUMBER(32) REFERENCES amr_user   NOT NULL,
-  Status       VARCHAR2(50),
-  PlaceID      NUMBER(32) REFERENCES amr_places NOT NULL,
-  "Date"       DATE
+CREATE TABLE AMR_ORDERS (
+  ID            NUMBER(32) PRIMARY KEY           NOT NULL,
+  OWNER_USER_ID NUMBER(32) REFERENCES amr_user   NOT NULL,
+  STATUS        VARCHAR2(50),
+  PLACE_ID      NUMBER(32) REFERENCES amr_places NOT NULL,
+  ORDER_DATE    DATE
 );
 
-CREATE TABLE amr_order_items (
-  ID                NUMBER(32) PRIMARY KEY                     NOT NULL,
-  OrderID           NUMBER(32) REFERENCES amr_orders           NOT NULL,
-  Place_Item_MenuID NUMBER(32) REFERENCES amr_place_items_menu NOT NULL,
-  UserID            NUMBER(32) REFERENCES amr_user             NOT NULL,
-  Count             NUMBER(10, 0) DEFAULT (1)
+CREATE TABLE AMR_ORDER_ITEMS (
+  ID                 NUMBER(32) PRIMARY KEY                     NOT NULL,
+  ORDER_ID           NUMBER(32) REFERENCES amr_orders           NOT NULL,
+  PLACE_ITEM_MENU_ID NUMBER(32) REFERENCES amr_place_items_menu NOT NULL,
+  USER_ID            NUMBER(32) REFERENCES amr_user             NOT NULL,
+  COUNT              NUMBER(10, 0) DEFAULT (1)
 );
