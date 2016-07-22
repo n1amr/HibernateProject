@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
 	public static final String table_prefix = "AMR_";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 
@@ -20,7 +20,7 @@ public class Main {
 		Place[] places = new Place[10];
 		Item[][] items = new Item[places.length][10];
 		Order[] orders = new Order[10];
-		int MAX_ITEMS_PER_ORDER =5;
+		int MAX_ITEMS_PER_ORDER = 5;
 		int MAX_COUNT_PER_ITEM = 5;
 
 		for (int i = 0; i < users.length; i++) {

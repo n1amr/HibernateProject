@@ -1,8 +1,11 @@
 package com.amr.hibernate.entities;
 
 import com.amr.hibernate.Main;
+import sun.security.provider.SHA;
 
 import javax.persistence.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
 @Entity(name = Main.table_prefix + "USER")
@@ -43,7 +46,7 @@ public class User {
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.username = username.toLowerCase();
 	}
 
 	@Column(name = "PASS")
@@ -51,8 +54,9 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws NoSuchAlgorithmException {
+		MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+		this.password = new String(sha256.digest(password.getBytes()));
 	}
 
 	@Column(name = "NAME")
