@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
 	public static final String table_prefix = "AMR_";
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session;
 

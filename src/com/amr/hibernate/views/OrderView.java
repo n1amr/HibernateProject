@@ -2,9 +2,7 @@ package com.amr.hibernate.views;
 
 import com.amr.hibernate.Main;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = Main.table_prefix + "ORDER_VIEW")
@@ -15,9 +13,16 @@ public class OrderView {
 	private String placeName;
 	private Date orderDate;
 
-
 	@Id
-	@Column(name = "ORDER_ID")
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "sequence_generator"
+	)
+	@SequenceGenerator(
+		name = "sequence_generator",
+		sequenceName = "AMR_ID_SEQUENCE"
+	)
+	@Column(name = "ID")
 	public long getId() {
 		return id;
 	}

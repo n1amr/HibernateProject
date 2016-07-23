@@ -13,7 +13,14 @@ public class OrderItem {
 	private int count;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "sequence_generator"
+	)
+	@SequenceGenerator(
+		name = "sequence_generator",
+		sequenceName = "AMR_ID_SEQUENCE"
+	)
 	@Column(name = "ID")
 	public long getId() {
 		return id;

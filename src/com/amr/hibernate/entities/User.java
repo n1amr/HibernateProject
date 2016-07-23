@@ -1,7 +1,6 @@
 package com.amr.hibernate.entities;
 
 import com.amr.hibernate.Main;
-import sun.security.provider.SHA;
 
 import javax.persistence.*;
 import java.security.MessageDigest;
@@ -21,17 +20,15 @@ public class User {
 	private Collection<Order> orders;
 
 	@Id
-	@Column(name = "ID")
 	@GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
-		generator = "id_seq_generator"
+		generator = "sequence_generator"
 	)
 	@SequenceGenerator(
-		name = "id_seq_generator",
-		sequenceName = "AMR_ID_SEQUENCE",
-		allocationSize = 1
-
+		name = "sequence_generator",
+		sequenceName = "AMR_ID_SEQUENCE"
 	)
+	@Column(name = "ID")
 	public long getId() {
 		return id;
 	}
@@ -54,9 +51,8 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(String password) throws NoSuchAlgorithmException {
-		MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-		this.password = new String(sha256.digest(password.getBytes()));
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Column(name = "NAME")

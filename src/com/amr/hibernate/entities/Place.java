@@ -14,8 +14,14 @@ public class Place {
 	private Collection<Item> items = new ArrayList<>();
 
 	@Id
-	@SequenceGenerator(name = "id_gen", sequenceName = "ID_SEQ_INCREMENT", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_gen")
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "sequence_generator"
+	)
+	@SequenceGenerator(
+		name = "sequence_generator",
+		sequenceName = "AMR_ID_SEQUENCE"
+	)
 	@Column(name = "ID", length = 32, columnDefinition = "NUMBER(32)")
 	public long getId() {
 		return id;
