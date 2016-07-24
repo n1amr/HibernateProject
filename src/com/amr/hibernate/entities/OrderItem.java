@@ -19,7 +19,8 @@ public class OrderItem {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ORDER_ITEMS_ID_SEQUENCE"
+		sequenceName = "AMR_ORDER_ITEMS_ID_SEQUENCE",
+		allocationSize = 1
 	)
 	@Column(name = "ID")
 	public long getId() {
