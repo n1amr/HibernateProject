@@ -26,7 +26,7 @@ public class User {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ID_SEQUENCE"
+		sequenceName = "AMR_USER_ID_SEQUENCE"
 	)
 	@Column(name = "ID")
 	public long getId() {

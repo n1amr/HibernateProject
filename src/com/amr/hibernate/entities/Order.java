@@ -25,7 +25,7 @@ public class Order {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ID_SEQUENCE"
+		sequenceName = "AMR_ORDERS_ID_SEQUENCE"
 	)
 	@Column(name = "ID")
 	public long getId() {

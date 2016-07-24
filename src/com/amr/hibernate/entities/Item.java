@@ -21,7 +21,7 @@ public class Item {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ID_SEQUENCE"
+		sequenceName = "AMR_PLACE_ITEMS_ID_SEQUENCE"
 	)
 	@Column(name = "ID")
 	public long getId() {

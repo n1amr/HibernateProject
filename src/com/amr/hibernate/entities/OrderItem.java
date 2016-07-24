@@ -19,7 +19,7 @@ public class OrderItem {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ID_SEQUENCE"
+		sequenceName = "AMR_ORDER_ITEMS_ID_SEQUENCE"
 	)
 	@Column(name = "ID")
 	public long getId() {

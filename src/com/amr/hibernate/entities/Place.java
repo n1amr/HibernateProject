@@ -20,7 +20,7 @@ public class Place {
 	)
 	@SequenceGenerator(
 		name = "sequence_generator",
-		sequenceName = "AMR_ID_SEQUENCE"
+		sequenceName = "AMR_PLACES_ID_SEQUENCE"
 	)
 	@Column(name = "ID", length = 32, columnDefinition = "NUMBER(32)")
 	public long getId() {
