@@ -50,6 +50,7 @@ public class Main {
 
 		for (int i = 0; i < orders.length; i++) {
 			Order order = new Order();
+			order.setName("Order " + i);
 			int ownerUserIndex = (int) (Math.random() * users.length);
 			order.setOwner(users[ownerUserIndex]);
 			int placeIndex = (int) (Math.random() * places.length);

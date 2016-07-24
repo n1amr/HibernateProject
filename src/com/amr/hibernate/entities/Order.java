@@ -10,6 +10,7 @@ import java.util.Date;
 @Entity(name = Main.table_prefix + "ORDERS")
 public class Order {
 	private long id;
+	private String name;
 	private User owner;
 	private String status;
 	private Place place;
@@ -34,6 +35,16 @@ public class Order {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "OWNER_USER_ID")
@@ -95,6 +106,7 @@ public class Order {
 	public String toString() {
 		return "Order:" +
 			"\n\tID: " + id +
+			"\n\tName: " + name +
 			"\n\tOwner Name: " + owner.getName() +
 			"\n\tStatus: " + status +
 			"\n\tPlace Name: " + place.getName() +
