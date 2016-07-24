@@ -8,6 +8,8 @@ import javax.persistence.*;
 public class OrderItemView {
 	private long id;
 	private long orderId;
+	private long userId;
+	private long placeId;
 	private String placeName;
 	private String userName;
 	private int count;
@@ -31,6 +33,24 @@ public class OrderItemView {
 
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
+	}
+
+	@Column(name = "USER_ID")
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	@Column(name = "PLACE_ID")
+	public long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(long placeId) {
+		this.placeId = placeId;
 	}
 
 	@Column(name = "PLACE_NAME")
@@ -82,6 +102,8 @@ public class OrderItemView {
 	public String toString() {
 		return "Order Item View:" +
 			"\n\tOrder ID: " + orderId +
+			"\n\tUser ID: " + userId +
+			"\n\tPlace ID: " + placeId +
 			"\n\tPlace Name: " + placeName +
 			"\n\tUser Name: " + userName +
 			"\n\tCount: " + count +

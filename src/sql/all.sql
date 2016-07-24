@@ -51,6 +51,8 @@ CREATE TABLE AMR_ORDER_ITEMS (
 CREATE OR REPLACE VIEW AMR_ORDER_VIEW AS
   SELECT
     AMR_ORDERS.ID         AS "ID",
+    AMR_USER.ID           AS "OWNER_ID",
+    AMR_PLACES.ID         AS "PLACE_ID",
     AMR_ORDERS.NAME       AS "ORDER_NAME",
     AMR_USER.NAME         AS "OWNER_NAME",
     AMR_ORDERS.STATUS     AS "STATUS",
@@ -66,6 +68,8 @@ CREATE OR REPLACE VIEW AMR_ORDER_ITEM_VIEW AS
   SELECT
     AMR_ORDER_ITEMS.ID                                 AS "ID",
     AMR_ORDERS.ID                                      AS "ORDER_ID",
+    AMR_USER.ID                                        AS "USER_ID",
+    AMR_PLACES.ID                                      AS "PLACE_ID",
     AMR_PLACES.NAME                                    AS "PLACE_NAME",
     AMR_USER.NAME                                      AS "USER_NAME",
     AMR_ORDER_ITEMS.COUNT                              AS "COUNT",

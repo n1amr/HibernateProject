@@ -8,6 +8,8 @@ import java.util.Date;
 @Entity(name = Main.table_prefix + "ORDER_VIEW")
 public class OrderView {
 	private long id;
+	private long ownerId;
+	private long placeId;
 	private String name;
 	private String ownerName;
 	private String status;
@@ -22,6 +24,24 @@ public class OrderView {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	@Column(name = "OWNER_ID")
+	public long getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(long ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	@Column(name = "PLACE_ID")
+	public long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(long placeId) {
+		this.placeId = placeId;
 	}
 
 	@Column(name = "ORDER_NAME")
@@ -74,6 +94,8 @@ public class OrderView {
 	public String toString() {
 		return "OrderView:" +
 			"\n\tID: " + id +
+			"\n\tOwner ID: " + ownerId +
+			"\n\tPlace ID: " + placeId +
 			"\n\tOrder Name: " + name +
 			"\n\tOwner Name: " + ownerName +
 			"\n\tStatus: " + status +
